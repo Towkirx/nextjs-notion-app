@@ -1,4 +1,3 @@
-
 "use client"
 
 import * as React from "react"
@@ -49,5 +48,3 @@ const AvatarFallback = React.forwardRef<
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
 
 export { Avatar, AvatarImage, AvatarFallback }
-  4 changes: 2 additions & 2 deletions4  
-components/ui/dropdown-menu.tsx
