@@ -17,8 +17,10 @@ interface DocumentIdPageProps {
 }
 
 const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
-  const Editor = useMemo(() => dynamic(() => import("@/components/editor"),
-  { ssr: false }), [])
+  const Editor = useMemo(
+    () => dynamic(() => import("@/components/editor"), { ssr: false }),
+    []
+  );
 
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId,
@@ -29,7 +31,7 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
   const onChange = (content: string) => {
     update({
       id: params.documentId,
-      content
+      content,
     });
   };
 
@@ -46,7 +48,7 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   if (document === null) {
@@ -55,10 +57,11 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
 
   return (
     <div className="pb-40">
-      <Cover url={document.coverImage} />
+      <Cover preview url={document.coverImage} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
-        <Toolbar initialData={document} />
+        <Toolbar preview initialData={document} />
         <Editor
+          editable={false}
           onChange={onChange}
           initialContent={document.content}
         />
